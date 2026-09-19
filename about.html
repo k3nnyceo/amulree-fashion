@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AmulRee Fashion</title>
+    <meta name="description" content="Discover the story behind AmulRee Fashion — a Nigerian-owned brand rooted in Enugu, bringing bold Ankara-inspired style to wardrobes across the country.">
+    <meta property="og:site_name" content="AmulRee Fashion">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About Us - AmulRee Fashion">
+    <meta property="og:description" content="Discover the story behind AmulRee Fashion — a Nigerian-owned brand rooted in Enugu, bringing bold Ankara-inspired style to wardrobes across the country.">
+    <meta property="og:image" content="images/products/AK008.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000'/%3E%3Ctext x='32' y='42' font-family='Arial, Helvetica, sans-serif' font-size='34' font-weight='800' fill='%23FFA500' text-anchor='middle'%3EA%3C/text%3E%3Crect x='14' y='50' width='36' height='5' rx='2.5' fill='%23FFA500'/%3E%3C/svg%3E">
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About page highlights the current nav link — other pages don't do this */
+        .nav-links a:hover {
+            color: var(--accent-orange-dark);
+        }
+
+        .nav-links a.current {
+            color: var(--accent-orange-dark);
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-orange);
+            padding-bottom: 4px;
+        }
+
+        /* Hero / Page Header */
+        .about-hero {
+            background:
+                repeating-linear-gradient(45deg, rgba(255,165,0,0.18) 0px, rgba(255,165,0,0.18) 22px, transparent 22px, transparent 44px),
+                repeating-linear-gradient(-45deg, rgba(0,0,0,0.09) 0px, rgba(0,0,0,0.09) 22px, transparent 22px, transparent 44px),
+                linear-gradient(135deg, #fff8f0 0%, #ffe8cc 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .story-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            position: relative;
+        }
+
+        .story-image img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: -14px;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: repeating-linear-gradient(45deg, var(--accent-orange) 0px, var(--accent-orange) 10px, #000 10px, #000 20px);
+            z-index: -1;
+            opacity: 0.85;
+        }
+
+        .story-text h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .story-text p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+        }
+
+        .values-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .values-header h2 {
+            font-size: 1.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .values-header p {
+            color: #666;
+        }
+
+        .values-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .value-card p {
+            font-size: 0.88rem;
+            color: #666;
+        }
+
+        /* Stats Strip */
+        .stats-strip {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        .stats-strip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: repeating-linear-gradient(45deg, var(--accent-orange) 0px, var(--accent-orange) 12px, #333 12px, #333 24px);
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-top: 0.4rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 1.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2.25rem;
+            background: var(--accent-orange);
+            color: #000;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .story-section {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .story-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .story-image::before {
+                display: none;
+            }
+
+            .values-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar" id="announcement-bar">
+        <div class="announcement-track">
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+        </div>
+        <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Dismiss announcement">×</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-brand"><span class="nav-brand-badge">A</span>AmulRee<span class="nav-brand-accent">Fashion</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html" class="current">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <form class="nav-search" onsubmit="submitHeaderSearch(event, this.querySelector('input'))">
+            <input type="text" placeholder="Search for products...">
+            <button type="submit" aria-label="Search">🔍</button>
+        </form>
+        <div class="nav-right">
+            <a href="wishlist.html" class="wishlist-icon">
+                ♡
+                <span class="wishlist-badge" id="wishlist-count">0</span>
+            </a>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <h1>Our Story</h1>
+        <p>Proudly Nigerian. Proudly African. AmulRee Fashion was built to bring vibrant Ankara-inspired style to every wardrobe.</p>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-image">
+            <img src="images/products/AK002.jpg" alt="AmulRee Fashion pieces">
+        </div>
+        <div class="story-text">
+            <h2>Rooted in Enugu, Made for the World</h2>
+            <p>AmulRee Fashion started with a simple idea: Nigerian style deserves a global stage. Founded in Enugu, we set out to create a wardrobe brand that celebrates the boldness of Ankara prints while staying true to modern, everyday wearability.</p>
+            <p>Every piece we release is chosen with care — from the fabric to the fit — because we believe fashion should make you feel confident, comfortable, and connected to where you're from.</p>
+            <p>Today, AmulRee Fashion serves customers across Nigeria, with a growing collection that blends traditional African textiles with contemporary silhouettes for work, weekends, and everything in between.</p>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-header">
+            <h2>What We Stand For</h2>
+            <p>The values that guide every piece we design and every order we ship.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🧵</div>
+                <h3>Quality Craftsmanship</h3>
+                <p>Every garment is checked for fabric quality, stitching, and finish before it reaches you.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌍</div>
+                <h3>Authentic Heritage</h3>
+                <p>Our designs draw from real Ankara traditions, reimagined for modern everyday style.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Customer First</h3>
+                <p>From sizing questions to returns, our team is here to make shopping with us easy.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">♻️</div>
+                <h3>Responsible Fashion</h3>
+                <p>We favor durable pieces and thoughtful production over fast, disposable trends.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Strip -->
+    <section class="stats-strip">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-number">16+</div>
+                <div class="stat-label">Curated Styles</div>
+            </div>
+            <div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Nigerian Owned</div>
+            </div>
+            <div>
+                <div class="stat-number">36</div>
+                <div class="stat-label">States We Ship To</div>
+            </div>
+            <div>
+                <div class="stat-number">4.7★</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to Shop the Collection?</h2>
+        <p>Discover pieces that bring Ankara-inspired color and modern style into your everyday wardrobe.</p>
+        <a href="shop.html" class="btn">Shop Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="shop.html">All Products</a>
+                <a href="shop.html">New Arrivals</a>
+                <a href="shop.html">Sale</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="contact.html">Shipping Info</a>
+                <a href="contact.html">Returns</a>
+                <a href="contact.html">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/2348037291408" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                    <a href="https://facebook.com/amulreefashion_" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                    <a href="https://instagram.com/amulreefashion" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2026 AmulRee Fashion. All rights reserved.</p>
+                <div class="payment-icons" title="Accepted payment methods">
+                    <span class="pi-visa">VISA</span>
+                    <span class="pi-mastercard">MC</span>
+                    <span class="pi-verve">VERVE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Update cart badge
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        updateCartBadge();
+    </script>
+
+    <a href="https://wa.me/2348037291408?text=Hi%20AmulRee%20Fashion%2C%20I%20have%20a%20question" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "clothing-site",
+  "version": "1.0.0",
+  "description": "AmulRee Fashion storefront + order/message backend",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^18.0.0",
+    "express": "^5.2.1",
+    "lowdb": "^7.0.1",
+    "nodemailer": "^10.0.10"
+  }
+}

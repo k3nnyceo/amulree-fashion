@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmulRee Fashion - Premium African Fashion for Every Moment</title>
+    <meta name="description" content="Shop vibrant, Ankara-inspired dresses at AmulRee Fashion — short and long styles with fast delivery across Nigeria.">
+    <!-- og:image/og:url need an absolute URL to render in real link previews (WhatsApp, Facebook, etc.) — swap in your live domain once deployed -->
+    <meta property="og:site_name" content="AmulRee Fashion">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AmulRee Fashion - Premium African Fashion for Every Moment">
+    <meta property="og:description" content="Shop vibrant, Ankara-inspired dresses at AmulRee Fashion — short and long styles with fast delivery across Nigeria.">
+    <meta property="og:image" content="images/products/AK008.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero — two bold, vibrant category tiles instead of a flat banner */
+        .hero-tiles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .hero-tile {
+            position: relative;
+            height: 480px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+
+        .hero-tile img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-tile:hover img {
+            transform: scale(1.08);
+        }
+
+        .hero-tile::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%),
+                        linear-gradient(120deg, rgba(255,122,69,0.35) 0%, rgba(0,0,0,0) 55%);
+        }
+
+        .hero-tile-content {
+            position: relative;
+            z-index: 1;
+            padding: 2.5rem;
+            color: #fff;
+        }
+
+        .hero-tile-content .eyebrow {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-tile-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Reveal-on-scroll animation, used across homepage sections */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Top Categories */
+        .categories-row {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .categories-row h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .categories-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-circle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .category-circle .circle-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .category-circle:hover .circle-image {
+            border-color: var(--accent-orange);
+            transform: translateY(-4px);
+        }
+
+        .category-circle span {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Section eyebrow label, used above section headings */
+        .section-eyebrow {
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-orange-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Featured Products / Best Sellers */
+        .featured {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: #000;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            position: relative;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #f5f5f5;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+
+        .btn-small {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #ffb347 0%, var(--accent-orange) 55%, #ff7a45 100%);
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            border-radius: 6px;
+        }
+
+        .btn-small:hover {
+            box-shadow: 0 6px 16px rgba(255,122,69,0.4);
+            transform: translateY(-1px);
+        }
+
+        /* About Section */
+        .about {
+            background: #f9f9f9;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #000;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: #ddd;
+            border-radius: 8px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 55%, #3a1a0a 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .newsletter-form button {
+            padding: 0.875rem 1.5rem;
+            background: white;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent-orange);
+            color: #000;
+        }
+
+        .success-message {
+            color: #4caf50;
+            margin-top: 1rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-tiles {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-tile {
+                height: 320px;
+            }
+
+            .hero-tile-content h2 {
+                font-size: 1.9rem;
+            }
+
+            .categories-grid {
+                gap: 1.5rem;
+            }
+
+            .category-circle .circle-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-tile {
+                height: 260px;
+            }
+
+            .hero-tile-content {
+                padding: 1.5rem;
+            }
+
+            .hero-tile-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .categories-row {
+                padding: 2.5rem 1rem 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+            .featured {
+                padding: 2rem 1rem;
+            }
+
+            .featured h2 {
+                font-size: 1.5rem;
+            }
+
+            .newsletter {
+                padding: 2rem 1rem;
+            }
+
+            .newsletter h2 {
+                font-size: 1.25rem;
+            }
+
+            .about {
+                padding: 2rem 1rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar" id="announcement-bar">
+        <div class="announcement-track">
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+        </div>
+        <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Dismiss announcement">×</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-brand"><img src="images/logo.jpg" alt="AmulRee Fashion" class="nav-brand-logo"></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <form class="nav-search" onsubmit="submitHeaderSearch(event, this.querySelector('input'))">
+            <input type="text" placeholder="Search for products...">
+            <button type="submit" aria-label="Search">🔍</button>
+        </form>
+        <div class="nav-right">
+            <a href="wishlist.html" class="wishlist-icon">
+                ♡
+                <span class="wishlist-badge" id="wishlist-count">0</span>
+            </a>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero — two vibrant category tiles -->
+    <section class="hero-tiles">
+        <a href="shop.html?category=short" class="hero-tile">
+            <img src="images/products/AK009.jpg" alt="Shop Short Dresses">
+            <div class="hero-tile-content">
+                <span class="eyebrow">New Season</span>
+                <h2>Short Dresses</h2>
+                <span class="btn">Shop Now</span>
+            </div>
+        </a>
+        <a href="shop.html?category=long" class="hero-tile">
+            <img src="images/products/AK008.jpg" alt="Shop Long Dresses">
+            <div class="hero-tile-content">
+                <span class="eyebrow">Statement Pieces</span>
+                <h2>Long Dresses</h2>
+                <span class="btn">Shop Now</span>
+            </div>
+        </a>
+    </section>
+
+    <!-- Top Categories -->
+    <section class="categories-row reveal">
+        <h2>Shop by Category</h2>
+        <div class="categories-grid">
+            <a href="shop.html?category=short" class="category-circle">
+                <img src="images/products/AK005.jpg" alt="Short Dress" class="circle-image">
+                <span>Short Dress</span>
+            </a>
+            <a href="shop.html?category=long" class="category-circle">
+                <img src="images/products/AK011.jpg" alt="Long Dress" class="circle-image">
+                <span>Long Dress</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured reveal">
+        <span class="section-eyebrow">Handpicked</span>
+        <h2>Featured Collection</h2>
+        <div class="product-grid" id="featured-grid"></div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="featured reveal">
+        <span class="section-eyebrow">Fan Favorites</span>
+        <h2>Best Sellers</h2>
+        <div class="product-grid" id="bestsellers-grid"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about reveal">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to AmulRee Fashion, a proudly Nigerian label where vibrant African heritage meets modern style. Founded in Enugu with a passion for quality fashion, we curate collections that celebrate individuality and self-expression.</p>
+                <p>Every piece in our collection is carefully selected to ensure the highest standards of fabric quality, craftsmanship, and design — inspired by rich Ankara traditions and contemporary silhouettes. We believe fashion should be accessible, sustainable, and empowering.</p>
+                <p>Our mission is to help you look and feel your best with versatile pieces that transition seamlessly from day to night, from Enugu streets to global stages.</p>
+                <a href="about.html" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+            </div>
+            <img src="images/products/AK007.jpg" alt="About Us" class="about-image">
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter reveal">
+        <h2>Join Our Community</h2>
+        <p>Subscribe to get updates on new collections and exclusive offers</p>
+        <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <div class="success-message" id="success-message">✓ Thanks for subscribing!</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="shop.html">All Products</a>
+                <a href="shop.html">New Arrivals</a>
+                <a href="shop.html">Sale</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">Shipping Info</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/2348037291408" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                    <a href="https://facebook.com/amulreefashion_" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                    <a href="https://instagram.com/amulreefashion" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2026 AmulRee Fashion. All rights reserved.</p>
+                <div class="payment-icons" title="Accepted payment methods">
+                    <span class="pi-visa">VISA</span>
+                    <span class="pi-mastercard">MC</span>
+                    <span class="pi-verve">VERVE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // addToCart / updateCartBadge come from products.js
+
+        // Render a product rail into a grid by id list — used for both
+        // Featured Collection and Best Sellers, just with different ids.
+        function renderProductGrid(gridId, ids) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = ids.map(id => products.find(p => p.id === id))
+                .filter(Boolean)
+                .map(product => {
+                    const onSale = isOnSale(product);
+                    const priceHtml = onSale
+                        ? `<span class="price-original">₦${product.originalPrice.toLocaleString()}</span>₦${product.price.toLocaleString()}`
+                        : `₦${product.price.toLocaleString()}`;
+                    return `
+                    <div class="product-card">
+                        ${onSale ? `<span class="sale-badge">-${getDiscountPercent(product)}%</span>` : ''}
+                        <button class="wishlist-toggle${isWishlisted(product.id) ? ' active' : ''}" data-wishlist-id="${product.id}" onclick="toggleWishlist(${product.id})" title="Toggle wishlist"></button>
+                        <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
+                            <div class="product-image-wrapper">
+                                <img src="${product.image}" alt="${product.name}" class="product-image">
+                                <div class="mini-view">
+                                    <div class="mini-view-name">${product.name}</div>
+                                    <div class="mini-view-price">${priceHtml}</div>
+                                    <div class="mini-view-rating"><span class="stars">${'★'.repeat(Math.floor(product.rating)) + (product.rating % 1 ? '½' : '')}</span> ${product.rating}</div>
+                                    <div class="mini-view-desc">${getProductDescription(product)}</div>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">${product.name}</div>
+                                <div class="product-price">${priceHtml}</div>
+                            </div>
+                        </a>
+                        <div class="product-info" style="padding-top:0;">
+                            <button class="btn-small" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+        }
+        renderProductGrid('featured-grid', [1, 5, 9, 13]);
+        renderProductGrid('bestsellers-grid', [3, 7, 11, 15]);
+
+        // Reveal sections as they scroll into view
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletter-form');
+        const successMessage = document.getElementById('success-message');
+
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = newsletterForm.querySelector('input[type="email"]').value;
+
+            try {
+                const res = await fetch('/api/subscribers', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                });
+                if (!res.ok) throw new Error('Server rejected the subscription');
+
+                successMessage.style.display = 'block';
+                newsletterForm.reset();
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            } catch (err) {
+                alert("Sorry, we couldn't subscribe you right now. Please try again later.");
+            }
+        });
+
+        // Initialize cart count on page load
+        updateCartBadge();
+    </script>
+
+    <a href="https://wa.me/2348037291408?text=Hi%20AmulRee%20Fashion%2C%20I%20have%20a%20question" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+</body>
+</html>

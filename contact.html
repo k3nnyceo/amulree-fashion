@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AmulRee Fashion</title>
+    <meta name="description" content="Get in touch with AmulRee Fashion — questions about orders, sizing, shipping or returns. We're here to help via WhatsApp, phone or email.">
+    <meta property="og:site_name" content="AmulRee Fashion">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Us - AmulRee Fashion">
+    <meta property="og:description" content="Get in touch with AmulRee Fashion — questions about orders, sizing, shipping or returns. We're here to help via WhatsApp, phone or email.">
+    <meta property="og:image" content="images/products/AK008.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000'/%3E%3Ctext x='32' y='42' font-family='Arial, Helvetica, sans-serif' font-size='34' font-weight='800' fill='%23FFA500' text-anchor='middle'%3EA%3C/text%3E%3Crect x='14' y='50' width='36' height='5' rx='2.5' fill='%23FFA500'/%3E%3C/svg%3E">
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            padding: 3rem 2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Form */
+        .contact-form {
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #333;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .form-input.error,
+        .form-textarea.error {
+            border-color: #d32f2f;
+            background: #ffebee;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* form-buttons is a flex row — both buttons should grow equally */
+        .btn {
+            flex: 1;
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        .contact-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .info-item {
+            margin-bottom: 1.75rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .info-content {
+            font-size: 0.95rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .info-content a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .info-content a:hover {
+            color: var(--accent-orange-dark);
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            color: #000;
+            border-color: var(--accent-orange);
+        }
+
+        /* FAQs Section */
+        .faqs-section {
+            margin-top: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .faq-question:hover {
+            background: #fff8f0;
+        }
+
+        .faq-chevron {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            color: var(--accent-orange);
+        }
+
+        .faq-chevron.open {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f9f9f9;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-section {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                position: static;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar" id="announcement-bar">
+        <div class="announcement-track">
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+        </div>
+        <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Dismiss announcement">×</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-brand"><span class="nav-brand-badge">A</span>AmulRee<span class="nav-brand-accent">Fashion</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <form class="nav-search" onsubmit="submitHeaderSearch(event, this.querySelector('input'))">
+            <input type="text" placeholder="Search for products...">
+            <button type="submit" aria-label="Search">🔍</button>
+        </form>
+        <div class="nav-right">
+            <a href="wishlist.html" class="wishlist-icon">
+                ♡
+                <span class="wishlist-badge" id="wishlist-count">0</span>
+            </a>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Get in Touch</h1>
+        <p>We'd love to hear from you. Send us a message!</p>
+    </section>
+
+    <div class="container">
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <div class="success-message" id="success-message">
+                    ✓ Thanks for your message! We'll get back to you soon.
+                </div>
+
+                <form id="contact-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name *</label>
+                        <input type="text" id="name" class="form-input" placeholder="Your name" required>
+                        <div class="error-message" id="error-name">Name is required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" id="email" class="form-input" placeholder="your@email.com" required>
+                        <div class="error-message" id="error-email">Please enter a valid email</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject *</label>
+                        <input type="text" id="subject" class="form-input" placeholder="How can we help?" required>
+                        <div class="error-message" id="error-subject">Subject is required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea id="message" class="form-textarea" placeholder="Tell us more..." required></textarea>
+                        <div class="error-message" id="error-message">Message must be at least 10 characters</div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn">Send Message</button>
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-content">
+                        <a href="mailto:support@amulreefashion.com">support@amulreefashion.com</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Phone</div>
+                    <div class="info-content">
+                        <a href="tel:+2348037291408">+234 803 729 1408</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Address</div>
+                    <div class="info-content">
+                        21A Nkpokiti Road<br>
+                        Enugu, Enugu State
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Business Hours</div>
+                    <div class="info-content">
+                        Monday - Friday: 9am - 5pm WAT<br>
+                        Saturday - Sunday: Closed
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Follow Us</div>
+                    <div class="social-links">
+                        <a href="https://wa.me/2348037291408" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                        <a href="https://facebook.com/amulreefashion_" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                        <a href="https://instagram.com/amulreefashion" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section class="faqs-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does shipping take?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer standard shipping (3-5 business days) for free on orders over ₦150,000. Orders under ₦150,000 have a flat ₦8,000 customs fee. Express shipping available for ₦22,500.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is your return policy?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer hassle-free returns within 30 days of purchase. Items must be unworn, unwashed, and in original condition with tags attached. Return shipping is free on orders over ₦75,000.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I find my size?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Check our detailed size chart on each product page. We recommend measuring yourself and comparing to our chart. If you're between sizes, we suggest sizing up for comfort.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How should I care for my clothing?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most items are hand-wash in cold water with mild detergent. Lay flat to dry. Check the care label on each product for specific instructions. Avoid bleach and machine washing.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept card, bank transfer, and USSD payments — all processed securely through Paystack, right on our checkout page.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I track my order?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After placing your order, you'll receive a confirmation email with a tracking number. You can use this to track your package in real-time.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you ship internationally?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Right now we ship only within Nigeria. International shipping is on our roadmap — sign up for our newsletter to be notified when it launches.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I place a custom or bulk order?</span>
+                        <span class="faq-chevron">▶</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! For custom or bulk inquiries, please contact us at support@amulreefashion.com with your details and we'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="shop.html">All Products</a>
+                <a href="shop.html">New Arrivals</a>
+                <a href="shop.html">Sale</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="contact.html">Shipping Info</a>
+                <a href="contact.html">Returns</a>
+                <a href="contact.html">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/2348037291408" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                    <a href="https://facebook.com/amulreefashion_" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                    <a href="https://instagram.com/amulreefashion" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2026 AmulRee Fashion. All rights reserved.</p>
+                <div class="payment-icons" title="Accepted payment methods">
+                    <span class="pi-visa">VISA</span>
+                    <span class="pi-mastercard">MC</span>
+                    <span class="pi-verve">VERVE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form Submission
+        async function submitForm(event) {
+            event.preventDefault();
+
+            // Clear previous errors
+            clearErrors();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validate
+            let isValid = true;
+
+            if (!name) {
+                showError('name');
+                isValid = false;
+            }
+
+            if (!email || !isValidEmail(email)) {
+                showError('email');
+                isValid = false;
+            }
+
+            if (!subject) {
+                showError('subject');
+                isValid = false;
+            }
+
+            if (!message || message.length < 10) {
+                showError('message');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            try {
+                const res = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, subject, message }),
+                });
+                if (!res.ok) throw new Error('Server rejected the message');
+
+                // Show success message
+                const successMsg = document.getElementById('success-message');
+                successMsg.classList.add('show');
+                document.getElementById('contact-form').reset();
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+            } catch (err) {
+                alert("Sorry, we couldn't send your message right now. Please try again or email us directly.");
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(fieldId) {
+            const input = document.getElementById(fieldId);
+            const errorMsg = document.getElementById(`error-${fieldId}`);
+            input.classList.add('error');
+            errorMsg.classList.add('show');
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+                input.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.classList.remove('show');
+            });
+        }
+
+        // FAQ Accordion
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const chevron = element.querySelector('.faq-chevron');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                if (a !== answer) {
+                    a.classList.remove('open');
+                }
+            });
+            document.querySelectorAll('.faq-chevron').forEach(c => {
+                if (c !== chevron) {
+                    c.classList.remove('open');
+                }
+            });
+
+            // Toggle current FAQ
+            answer.classList.toggle('open');
+            chevron.classList.toggle('open');
+        }
+
+        // Update Cart Badge
+        function updateCartBadge() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+
+        // Initialize
+        updateCartBadge();
+    </script>
+
+    <a href="https://wa.me/2348037291408?text=Hi%20AmulRee%20Fashion%2C%20I%20have%20a%20question" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+</body>
+</html>

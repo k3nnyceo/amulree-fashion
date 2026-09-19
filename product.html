@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop premium, Ankara-inspired dresses at AmulRee Fashion.">
+    <meta property="og:site_name" content="AmulRee Fashion">
+    <meta property="og:type" content="product">
+    <meta property="og:image" content="images/products/AK008.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23000'/%3E%3Ctext x='32' y='42' font-family='Arial, Helvetica, sans-serif' font-size='34' font-weight='800' fill='%23FFA500' text-anchor='middle'%3EA%3C/text%3E%3Crect x='14' y='50' width='36' height='5' rx='2.5' fill='%23FFA500'/%3E%3C/svg%3E">
+    <title>Product - AmulRee Fashion</title>
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        .container {
+            padding: 0 2rem;
+        }
+
+        /* Product Section */
+        .product-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: flex-start;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image-wrapper {
+            width: 100%;
+            height: 500px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .main-image-wrapper:hover .main-image {
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .product-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .product-rating:hover {
+            color: #ffc107;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1rem;
+        }
+
+        .stock-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .stock-badge.out-of-stock {
+            background: #999;
+        }
+
+        .product-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Selector Sections */
+        .selector-section {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+        }
+
+        .selector-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .selector-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .selector-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selector-label-row .selector-label {
+            margin-bottom: 0.75rem;
+        }
+
+        .size-guide-link {
+            background: none;
+            border: none;
+            color: var(--accent-orange-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+            text-transform: none;
+            letter-spacing: normal;
+            margin-bottom: 0.75rem;
+        }
+
+        .size-guide-link:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Size Guide Modal */
+        .size-guide-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .size-guide-overlay.show {
+            display: flex;
+        }
+
+        .size-guide-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 520px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-top: 6px solid var(--accent-orange);
+        }
+
+        .size-guide-card h2 {
+            margin-bottom: 0.4rem;
+        }
+
+        .size-guide-card > p {
+            color: #666;
+            font-size: 0.88rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .size-guide-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .size-guide-table th,
+        .size-guide-table td {
+            padding: 0.65rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .size-guide-table th {
+            background: #f9f9f9;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .size-guide-table td:first-child,
+        .size-guide-table th:first-child {
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .size-guide-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .size-guide-close {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--accent-orange);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .size-guide-close:hover {
+            background: var(--accent-orange-dark);
+        }
+
+        .size-buttons {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.5rem;
+        }
+
+        .size-btn {
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .size-btn:hover {
+            border-color: #333;
+        }
+
+        .size-btn.active {
+            border-color: var(--accent-orange);
+            background: var(--accent-orange);
+            color: #000;
+        }
+
+        .color-swatches {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .color-swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .color-swatch.active {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--accent-orange);
+        }
+
+        .color-tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .color-swatch:hover .color-tooltip {
+            opacity: 1;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
+            border-color: #333;
+        }
+
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .qty-input:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-orange);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .secondary-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .wishlist-link {
+            display: inline-block;
+            padding: 0.4rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .wishlist-link:hover {
+            color: #000;
+        }
+
+        .wishlist-link.active {
+            color: #e0245e;
+        }
+
+        /* Share Buttons */
+        .share-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .share-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .share-btn:hover {
+            background: var(--accent-orange);
+            color: #000;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin-bottom: 3rem;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            text-align: left;
+        }
+
+        .tab-btn:hover {
+            background: #f9f9f9;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: var(--accent-orange);
+        }
+
+        .tab-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .tab-content.active {
+            max-height: 500px;
+            padding: 1.5rem 0;
+        }
+
+        .tab-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Related Products */
+        .related-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .related-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .related-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .related-image {
+            width: 100%;
+            height: 250px;
+            background: #f5f5f5;
+            object-fit: cover;
+        }
+
+        .related-info {
+            padding: 1rem;
+        }
+
+        .related-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .related-price {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .btn-small {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--accent-orange);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-small:hover {
+            background: var(--accent-orange-dark);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            margin: 4rem 0;
+        }
+
+        .review-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .review-stars {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-section {
+                gap: 2rem;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .main-image-wrapper {
+                height: 400px;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .size-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .tab-btn {
+                font-size: 0.85rem;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-price {
+                font-size: 1.25rem;
+            }
+
+            .main-image-wrapper {
+                height: 300px;
+            }
+
+            .size-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement bar -->
+    <div class="announcement-bar" id="announcement-bar">
+        <div class="announcement-track">
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+            <span>✨ Free delivery in Enugu on orders over ₦150,000</span>
+            <span>💳 Secure checkout powered by Paystack</span>
+            <span>📦 Easy 30-day returns</span>
+        </div>
+        <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Dismiss announcement">×</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-brand"><span class="nav-brand-badge">A</span>AmulRee<span class="nav-brand-accent">Fashion</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <form class="nav-search" onsubmit="submitHeaderSearch(event, this.querySelector('input'))">
+            <input type="text" placeholder="Search for products...">
+            <button type="submit" aria-label="Search">🔍</button>
+        </form>
+        <div class="nav-right">
+            <a href="wishlist.html" class="wishlist-icon">
+                ♡
+                <span class="wishlist-badge" id="wishlist-count">0</span>
+            </a>
+            <a href="cart.html" class="cart-icon">
+                🛒
+                <span class="cart-badge" id="cart-count">0</span>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="shop.html">Shop</a>
+        <span>/</span>
+        <span id="breadcrumb-category">Category</span>
+        <span>/</span>
+        <span id="breadcrumb-name">Product</span>
+    </div>
+
+    <div class="container">
+        <!-- Product Section -->
+        <section class="product-section">
+            <!-- Image Gallery -->
+            <div class="image-gallery">
+                <div class="main-image-wrapper">
+                    <img src="" alt="" class="main-image" id="main-image">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-title" id="product-title">Product name</h1>
+                <div class="product-price" id="product-price">₦0</div>
+
+                <div class="product-rating" onclick="scrollToReviews()">
+                    <span class="stars" id="product-stars">★★★★★</span>
+                    <span id="product-rating-text">0.0 rating</span>
+                </div>
+
+                <div class="stock-badge">In Stock</div>
+
+                <p class="product-description" id="product-description"></p>
+
+                <!-- Size Selector -->
+                <div class="selector-section" id="size-section">
+                    <div class="selector-label-row">
+                        <div class="selector-label">Select Size</div>
+                        <button class="size-guide-link" onclick="openSizeGuide()" type="button">Size Guide</button>
+                    </div>
+                    <div class="size-buttons">
+                        <button class="size-btn" onclick="selectSize(this)">XS</button>
+                        <button class="size-btn" onclick="selectSize(this)">S</button>
+                        <button class="size-btn active" onclick="selectSize(this)">M</button>
+                        <button class="size-btn" onclick="selectSize(this)">L</button>
+                        <button class="size-btn" onclick="selectSize(this)">XL</button>
+                        <button class="size-btn" onclick="selectSize(this)">XXL</button>
+                    </div>
+                </div>
+
+                <!-- Color Selector -->
+                <div class="selector-section">
+                    <div class="selector-label">Select Color</div>
+                    <div class="color-swatches">
+                        <div class="color-swatch active" style="background: #FFB6C1;" onclick="selectColor(this)">
+                            <span class="color-tooltip">Pink</span>
+                        </div>
+                        <div class="color-swatch" style="background: #87CEEB;" onclick="selectColor(this)">
+                            <span class="color-tooltip">Blue</span>
+                        </div>
+                        <div class="color-swatch" style="background: #98D8C8;" onclick="selectColor(this)">
+                            <span class="color-tooltip">Green</span>
+                        </div>
+                        <div class="color-swatch" style="background: #FFE4B5;" onclick="selectColor(this)">
+                            <span class="color-tooltip">Yellow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantity Selector -->
+                <div class="selector-section">
+                    <div class="selector-label">Quantity</div>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="decreaseQty()">−</button>
+                        <input type="number" class="qty-input" id="qty-input" value="1" min="1" max="10" onchange="validateQty()">
+                        <button class="qty-btn" onclick="increaseQty()">+</button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart -->
+                <button class="btn-add-cart" onclick="handleAddToCart()">Add to Cart</button>
+
+                <!-- Wishlist / Ask about product -->
+                <div class="secondary-actions">
+                    <button class="wishlist-link" id="wishlist-toggle-btn" onclick="handleWishlistToggle()">♡ Add to wishlist</button>
+                    <a href="#" class="wishlist-link" id="ask-about-product" target="_blank" rel="noopener">✉ Ask about product</a>
+                </div>
+
+                <!-- Share -->
+                <div class="share-section">
+                    <span class="share-label">Share:</span>
+                    <a href="#" class="share-btn" id="share-facebook" target="_blank" rel="noopener" title="Share on Facebook"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                    <a href="#" class="share-btn" id="share-whatsapp" target="_blank" rel="noopener" title="Share on WhatsApp"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                    <a href="#" class="share-btn" id="share-twitter" target="_blank" rel="noopener" title="Share on X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.24 2.25h3.32l-7.26 8.3 8.54 11.2h-6.69l-5.24-6.85-6 6.85H1.6l7.76-8.87L1.15 2.25h6.86l4.73 6.26zm-1.17 17.52h1.84L6.99 4.13H5.02z"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab(this, 'materials')">Materials & Care</button>
+                <button class="tab-btn" onclick="switchTab(this, 'shipping')">Shipping</button>
+                <button class="tab-btn" onclick="switchTab(this, 'returns')">Returns</button>
+            </div>
+
+            <div class="tab-content active" id="materials">
+                <p><strong>Fabric Composition:</strong> 100% Viscose (breathable, lightweight, drapes beautifully)</p>
+                <p><strong>Washing Instructions:</strong> Hand wash in cold water with mild detergent. Lay flat to dry. Do not bleach or machine wash. Iron on low heat if needed.</p>
+            </div>
+
+            <div class="tab-content" id="shipping">
+                <p><strong>Processing Time:</strong> All orders are processed within 2 business days.</p>
+                <p><strong>Delivery Estimate:</strong> Standard shipping (3-5 business days) is free on orders over ₦150,000. Express shipping available for ₦15,000.</p>
+            </div>
+
+            <div class="tab-content" id="returns">
+                <p><strong>30-Day Return Policy:</strong> We offer hassle-free returns within 30 days of purchase. Items must be unworn and in original condition with tags attached. Return shipping is free on orders over ₦75,000.</p>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="related-section" id="related-section">
+            <h2 class="section-title">You Might Also Like</h2>
+            <div class="related-grid" id="related-grid"></div>
+        </section>
+
+        <!-- Recently Viewed -->
+        <section class="related-section" id="recently-viewed-section">
+            <h2 class="section-title">Recently Viewed</h2>
+            <div class="related-grid" id="recently-viewed-grid"></div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviews-section" id="reviews">
+            <h2 class="section-title">Customer Reviews</h2>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">Sarah M.</div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <div class="review-date">2 weeks ago</div>
+                </div>
+                <p class="review-text">This piece is absolutely stunning! The quality feels luxurious and it's held up perfectly after several wears. I received so many compliments the first time I wore it out. Highly recommended!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">Jessica L.</div>
+                        <div class="review-stars">★★★★☆</div>
+                    </div>
+                    <div class="review-date">1 month ago</div>
+                </div>
+                <p class="review-text">Love the design and colors! The fit is true to size and comfortable all day. My only minor note is I wish it came in more colorways, but overall it's a great addition to my wardrobe.</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div>
+                        <div class="reviewer-name">Amanda T.</div>
+                        <div class="review-stars">★★★★★</div>
+                    </div>
+                    <div class="review-date">1 month ago</div>
+                </div>
+                <p class="review-text">Perfect for everyday wear! Lightweight, comfortable, and versatile enough to dress up or down. It looks even better in person than in the photos. Will definitely order again!</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <a href="shop.html">All Products</a>
+                <a href="shop.html">New Arrivals</a>
+                <a href="shop.html">Sale</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="contact.html">Shipping Info</a>
+                <a href="contact.html">Returns</a>
+                <a href="contact.html">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/2348037291408" target="_blank" rel="noopener" title="WhatsApp"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+                    <a href="https://facebook.com/amulreefashion_" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.022 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.631.771-1.631 1.562v1.878h2.773l-.443 2.91h-2.33V22c4.78-.756 8.438-4.918 8.438-9.94z"/></svg></a>
+                    <a href="https://instagram.com/amulreefashion" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+                </div>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2026 AmulRee Fashion. All rights reserved.</p>
+                <div class="payment-icons" title="Accepted payment methods">
+                    <span class="pi-visa">VISA</span>
+                    <span class="pi-mastercard">MC</span>
+                    <span class="pi-verve">VERVE</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Size Guide Modal -->
+    <div class="size-guide-overlay" id="size-guide-overlay">
+        <div class="size-guide-card">
+            <h2>Size Guide</h2>
+            <p>Measurements in centimeters. If you're between sizes, we recommend sizing up for a more comfortable fit.</p>
+            <table class="size-guide-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Bust</th>
+                        <th>Waist</th>
+                        <th>Hips</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>XS</td><td>78–81</td><td>60–63</td><td>85–88</td></tr>
+                    <tr><td>S</td><td>82–85</td><td>64–67</td><td>89–92</td></tr>
+                    <tr><td>M</td><td>86–91</td><td>68–73</td><td>93–98</td></tr>
+                    <tr><td>L</td><td>92–97</td><td>74–79</td><td>99–104</td></tr>
+                    <tr><td>XL</td><td>98–105</td><td>80–87</td><td>105–112</td></tr>
+                    <tr><td>XXL</td><td>106–113</td><td>88–95</td><td>113–120</td></tr>
+                </tbody>
+            </table>
+            <p class="size-guide-note">Still unsure? <a href="https://wa.me/2348037291408?text=Hi%20AmulRee%20Fashion%2C%20I%20need%20help%20picking%20a%20size" target="_blank" rel="noopener">Ask us on WhatsApp</a> and we'll help you pick the right fit.</p>
+            <button class="size-guide-close" onclick="closeSizeGuide()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Load the product matching ?id= from the shared catalog in products.js.
+        // Falls back to the first product so a bare /product.html link still works.
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedId = parseInt(urlParams.get('id'), 10);
+        const currentProduct = products.find(p => p.id === requestedId) || products[0];
+
+        function renderProduct(product) {
+            document.title = `${product.name} - AmulRee Fashion`;
+            document.querySelector('meta[name="description"]').setAttribute('content', getProductDescription(product));
+
+            document.getElementById('breadcrumb-category').textContent = CATEGORY_LABELS[product.category];
+            document.getElementById('breadcrumb-name').textContent = product.name;
+
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = product.image;
+            mainImage.alt = product.name;
+
+            document.getElementById('product-title').textContent = product.name;
+            const priceEl = document.getElementById('product-price');
+            priceEl.innerHTML = isOnSale(product)
+                ? `<span class="price-original">₦${product.originalPrice.toLocaleString()}</span>₦${product.price.toLocaleString()} <span class="sale-badge" style="position:static; display:inline-block; vertical-align:middle;">-${getDiscountPercent(product)}%</span>`
+                : '₦' + product.price.toLocaleString();
+
+            const fullStars = Math.floor(product.rating);
+            const stars = '★'.repeat(fullStars) + (product.rating % 1 ? '½' : '') + '☆'.repeat(5 - Math.ceil(product.rating));
+            document.getElementById('product-stars').textContent = stars;
+            document.getElementById('product-rating-text').textContent = `${product.rating} rating`;
+
+            document.getElementById('product-description').textContent = getProductDescription(product);
+
+            updateWishlistButton(product.id);
+
+            // Share links — Instagram/Pinterest are intentionally left out here since
+            // neither supports sharing an arbitrary link via a web intent URL.
+            const pageUrl = window.location.href;
+            const shareText = `Check out the ${product.name} on AmulRee Fashion`;
+            document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+            document.getElementById('share-whatsapp').href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + pageUrl)}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
+
+            // Ask about product — routes straight into the business's WhatsApp,
+            // which is how customer questions actually get handled here
+            const askText = `Hi AmulRee Fashion, I have a question about the ${product.name} (${pageUrl})`;
+            document.getElementById('ask-about-product').href = `https://wa.me/2348037291408?text=${encodeURIComponent(askText)}`;
+        }
+
+        function updateWishlistButton(productId) {
+            const btn = document.getElementById('wishlist-toggle-btn');
+            const active = isWishlisted(productId);
+            btn.classList.toggle('active', active);
+            btn.textContent = active ? '♥ Remove from wishlist' : '♡ Add to wishlist';
+        }
+
+        function handleWishlistToggle() {
+            const active = toggleWishlist(currentProduct.id);
+            const btn = document.getElementById('wishlist-toggle-btn');
+            btn.classList.toggle('active', active);
+            btn.textContent = active ? '♥ Remove from wishlist' : '♡ Add to wishlist';
+        }
+
+        function renderRelated(product) {
+            const related = products
+                .filter(p => p.category === product.category && p.id !== product.id)
+                .slice(0, 4);
+
+            document.getElementById('related-section').style.display = related.length ? 'block' : 'none';
+            document.getElementById('related-grid').innerHTML = related.map(p => `
+                <a href="product.html?id=${p.id}" style="text-decoration:none; color:inherit;">
+                    <div class="related-card">
+                        <div class="related-image-wrapper">
+                            <img src="${p.image}" alt="${p.name}" class="related-image">
+                            <div class="mini-view">
+                                <div class="mini-view-name">${p.name}</div>
+                                <div class="mini-view-price">₦${p.price.toLocaleString()}</div>
+                                <div class="mini-view-desc">${getProductDescription(p)}</div>
+                            </div>
+                        </div>
+                        <div class="related-info">
+                            <div class="related-name">${p.name}</div>
+                            <div class="related-price">₦${p.price.toLocaleString()}</div>
+                            <button class="btn-small">View Product</button>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function renderRecentlyViewed(product) {
+            const viewed = getRecentlyViewed(product.id, 4);
+
+            document.getElementById('recently-viewed-section').style.display = viewed.length ? 'block' : 'none';
+            document.getElementById('recently-viewed-grid').innerHTML = viewed.map(p => `
+                <a href="product.html?id=${p.id}" style="text-decoration:none; color:inherit;">
+                    <div class="related-card">
+                        <div class="related-image-wrapper">
+                            <img src="${p.image}" alt="${p.name}" class="related-image">
+                            <div class="mini-view">
+                                <div class="mini-view-name">${p.name}</div>
+                                <div class="mini-view-price">₦${p.price.toLocaleString()}</div>
+                                <div class="mini-view-desc">${getProductDescription(p)}</div>
+                            </div>
+                        </div>
+                        <div class="related-info">
+                            <div class="related-name">${p.name}</div>
+                            <div class="related-price">₦${p.price.toLocaleString()}</div>
+                            <button class="btn-small">View Product</button>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Size Selection
+        function selectSize(button) {
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+
+        // Size Guide Modal
+        function openSizeGuide() {
+            document.getElementById('size-guide-overlay').classList.add('show');
+        }
+
+        function closeSizeGuide() {
+            document.getElementById('size-guide-overlay').classList.remove('show');
+        }
+
+        // Color Selection
+        function selectColor(swatch) {
+            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+            swatch.classList.add('active');
+        }
+
+        // Quantity Controls
+        function decreaseQty() {
+            const input = document.getElementById('qty-input');
+            if (input.value > 1) input.value = parseInt(input.value) - 1;
+        }
+
+        function increaseQty() {
+            const input = document.getElementById('qty-input');
+            if (input.value < 10) input.value = parseInt(input.value) + 1;
+        }
+
+        function validateQty() {
+            const input = document.getElementById('qty-input');
+            if (input.value < 1) input.value = 1;
+            if (input.value > 10) input.value = 10;
+        }
+
+        // Tab Switching
+        function switchTab(button, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Scroll to Reviews
+        function scrollToReviews() {
+            document.getElementById('reviews').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add to Cart — uses the shared addToCart(productId, opts) from products.js
+        function handleAddToCart() {
+            const sizeSection = document.getElementById('size-section');
+            const activeSizeBtn = sizeSection.style.display !== 'none' ? document.querySelector('.size-btn.active') : null;
+            const activeColorSwatch = document.querySelector('.color-swatch.active');
+
+            const size = activeSizeBtn ? activeSizeBtn.textContent : null;
+            const color = activeColorSwatch ? activeColorSwatch.querySelector('.color-tooltip').textContent : null;
+            const qty = parseInt(document.getElementById('qty-input').value, 10) || 1;
+
+            const result = addToCart(currentProduct.id, { size, color, qty });
+            if (result) {
+                const sizeText = size ? ` in size ${size}` : '';
+                alert(`${qty} × ${currentProduct.name}${sizeText} added to cart!`);
+            }
+        }
+
+        // Initialize
+        renderProduct(currentProduct);
+        renderRelated(currentProduct);
+        renderRecentlyViewed(currentProduct);
+        trackRecentlyViewed(currentProduct.id);
+        updateCartBadge();
+    </script>
+
+    <a href="https://wa.me/2348037291408?text=Hi%20AmulRee%20Fashion%2C%20I%20have%20a%20question" class="whatsapp-fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.55-3.7 8.23-8.25 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.13.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg></a>
+</body>
+</html>

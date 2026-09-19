@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - AmulRee Fashion</title>
+    <style>
+        :root {
+            --accent-orange: #FFA500;
+            --accent-orange-dark: #E69500;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            background: #f9f9f9;
+        }
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header h1 { font-size: 1.25rem; }
+        header .brand { color: var(--accent-orange); font-weight: 700; }
+        main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tab-btn {
+            padding: 0.6rem 1.25rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .tab-btn.active { background: var(--accent-orange); border-color: var(--accent-orange); }
+        .panel { display: none; background: white; border-radius: 8px; border: 1px solid #eee; overflow: hidden; }
+        .panel.active { display: block; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+        th, td { padding: 0.9rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+        th { background: #fafafa; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; color: #666; }
+        tr:last-child td { border-bottom: none; }
+        .empty { padding: 3rem; text-align: center; color: #999; }
+        .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+        .badge-paid { background: #e6f7ed; color: #1e7e42; }
+        .badge-unverified { background: #fff3e0; color: #b56a00; }
+        .items-list { font-size: 0.82rem; color: #555; }
+        .items-list div { margin-bottom: 0.15rem; }
+        .msg-text { max-width: 320px; white-space: pre-wrap; }
+        .refresh-btn {
+            padding: 0.5rem 1rem; border: 1px solid #ddd; background: white;
+            border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-left: auto;
+        }
+        .toolbar { display: flex; align-items: center; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="brand">AmulRee</span> Admin</h1>
+    </header>
+
+    <main>
+        <div class="toolbar">
+            <div class="tabs">
+                <button class="tab-btn active" data-panel="orders-panel" onclick="switchTab(this)">Orders</button>
+                <button class="tab-btn" data-panel="messages-panel" onclick="switchTab(this)">Messages</button>
+                <button class="tab-btn" data-panel="subscribers-panel" onclick="switchTab(this)">Newsletter</button>
+            </div>
+            <button class="refresh-btn" onclick="loadAll()">Refresh</button>
+        </div>
+
+        <div class="panel active" id="orders-panel">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Status</th><th>Customer</th><th>Ship To</th><th>Items</th><th>Total</th><th>Reference</th></tr>
+                </thead>
+                <tbody id="orders-body"></tbody>
+            </table>
+            <div class="empty" id="orders-empty" style="display:none;">No orders yet.</div>
+        </div>
+
+        <div class="panel" id="messages-panel">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>From</th><th>Subject</th><th>Message</th></tr>
+                </thead>
+                <tbody id="messages-body"></tbody>
+            </table>
+            <div class="empty" id="messages-empty" style="display:none;">No messages yet.</div>
+        </div>
+
+        <div class="panel" id="subscribers-panel">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Email</th></tr>
+                </thead>
+                <tbody id="subscribers-body"></tbody>
+            </table>
+            <div class="empty" id="subscribers-empty" style="display:none;">No subscribers yet.</div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.panel).classList.add('active');
+        }
+
+        function formatDate(iso) {
+            return new Date(iso).toLocaleString();
+        }
+
+        async function loadOrders() {
+            const res = await fetch('/api/orders');
+            const orders = await res.json();
+            const body = document.getElementById('orders-body');
+            document.getElementById('orders-empty').style.display = orders.length ? 'none' : 'block';
+            body.innerHTML = orders.map(o => `
+                <tr>
+                    <td>${formatDate(o.createdAt)}</td>
+                    <td><span class="badge ${o.verified ? 'badge-paid' : 'badge-unverified'}">${o.verified ? 'Paid' : 'Unverified'}</span></td>
+                    <td>${o.customer.fullName}<br><small>${o.customer.email}<br>${o.customer.phone}</small></td>
+                    <td>${o.customer.address}, ${o.customer.city}, ${o.customer.state}</td>
+                    <td class="items-list">${o.items.map(i => `<div>${i.name}${i.size ? ' (' + i.size + ')' : ''} × ${i.quantity}</div>`).join('')}</td>
+                    <td>₦${o.totals.total.toLocaleString()}</td>
+                    <td><small>${o.reference}</small></td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadMessages() {
+            const res = await fetch('/api/messages');
+            const messages = await res.json();
+            const body = document.getElementById('messages-body');
+            document.getElementById('messages-empty').style.display = messages.length ? 'none' : 'block';
+            body.innerHTML = messages.map(m => `
+                <tr>
+                    <td>${formatDate(m.createdAt)}</td>
+                    <td>${m.name}<br><small>${m.email}</small></td>
+                    <td>${m.subject}</td>
+                    <td class="msg-text">${m.message}</td>
+                </tr>
+            `).join('');
+        }
+
+        async function loadSubscribers() {
+            const res = await fetch('/api/subscribers');
+            const subs = await res.json();
+            const body = document.getElementById('subscribers-body');
+            document.getElementById('subscribers-empty').style.display = subs.length ? 'none' : 'block';
+            body.innerHTML = subs.map(s => `
+                <tr><td>${formatDate(s.createdAt)}</td><td>${s.email}</td></tr>
+            `).join('');
+        }
+
+        function loadAll() {
+            loadOrders();
+            loadMessages();
+            loadSubscribers();
+        }
+
+        loadAll();
+    </script>
+</body>
+</html>
