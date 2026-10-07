@@ -7,7 +7,7 @@
 // and product page.
 const products = [
     { id: 1,  name: 'AK001', category: 'short', price: 27000,  image: 'images/products/AK001.jpg', rating: 4.6, description: 'Yellow and black print dress with sequin trim and puff sleeves.' },
-    { id: 2,  name: 'AK002', category: 'short', price: 78500,  image: 'images/products/AK002.jpg', rating: 4.7, description: 'Red-sleeve dress with a white floral-burst print.' },
+    { id: 2,  name: 'AK002', category: 'short', price: 28000,  image: 'images/products/AK002.jpg', rating: 4.7, description: 'Red-sleeve dress with a white floral-burst print.' },
     { id: 3,  name: 'AK003', category: 'long',  price: 48000, image: 'images/products/AK003.jpg', rating: 4.5, description: 'Striped top with a tiered blue, teal and pink maxi skirt.' },
     { id: 4,  name: 'AK004', category: 'short', price: 25000,  image: 'images/products/AK004.jpg', rating: 4.4, description: 'Blue and white striped dress with a blue batik-print skirt panel and headwrap.' },
     { id: 5,  name: 'AK005', category: 'short', price: 42000,  image: 'images/products/AK005.jpg', rating: 4.8, description: 'Purple and pink floral dress with a sequin headwrap.' },
